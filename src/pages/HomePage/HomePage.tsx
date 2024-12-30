@@ -41,8 +41,8 @@ const HomePage = React.forwardRef<HTMLImageElement, {}>((props, ref) => {
           <hgroup>
             <h2>📷 Select an image</h2>
             <h3>Choose from a gallery or use your webcam</h3>
-            <p>Click on an image below or activate your webcam for analysis.</p>
           </hgroup>
+          <p>Click on an image below or activate your webcam for analysis.</p>
         </MainContent>
       </Container>
     </>
