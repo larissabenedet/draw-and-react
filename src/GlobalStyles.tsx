@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     --blue: hsl(195, 85%, 41%);
     --blue-hover: hsl(195, 80%, 50%);
     --p-color: hsl(205, 10%, 50%);
+    --button-color: #007AFF;
     --transition: 0.2s ease-in-out;
   }
 
@@ -18,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 1rem;
+    ::selection {
+      background-color: var(--button-color); 
+      color: #11191f;
+    }
   }
 
   a {

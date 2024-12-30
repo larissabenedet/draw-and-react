@@ -6,6 +6,7 @@ import {
   Navbar,
   SectionIntro,
 } from './styles'
+import { Button } from './components'
 
 const HomePage = React.forwardRef<HTMLImageElement, {}>((props, ref) => {
   return (
@@ -43,6 +44,10 @@ const HomePage = React.forwardRef<HTMLImageElement, {}>((props, ref) => {
             <h3>Choose from a gallery or use your webcam</h3>
           </hgroup>
           <p>Click on an image below or activate your webcam for analysis.</p>
+          <img src="" alt="" />
+          <Button text="Open Gallery" />
+          <Button text="Use Webcam" />
+          <Button text="Download Result" />
         </MainContent>
       </Container>
     </>
