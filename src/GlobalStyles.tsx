@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     --text-color: hsl(205, 16%, 77%);
     --blue: hsl(195, 85%, 41%);
     --blue-hover: hsl(195, 80%, 50%);
+    --p-color: hsl(205, 10%, 50%);
     --transition: 0.2s ease-in-out;
   }
 
@@ -16,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     color: var(--text-color);
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 19px;
+    font-size: 1rem;
   }
 
   a {

@@ -1,5 +1,11 @@
 import React from 'react'
-import { HomeLink, Navbar } from './styles'
+import {
+  Container,
+  HomeLink,
+  MainContent,
+  Navbar,
+  SectionIntro,
+} from './styles'
 
 const HomePage = React.forwardRef<HTMLImageElement, {}>((props, ref) => {
   return (
@@ -22,19 +28,23 @@ const HomePage = React.forwardRef<HTMLImageElement, {}>((props, ref) => {
           </ul>
         </Navbar>
       </header>
-      <section>
-        <h1>Welcome to AI Object Detection</h1>
-        <p>
-          Discover the power of artificial intelligence by analyzing images to
-          detect objects in real-time. Upload an image or use your webcam to get
-          started.
-        </p>
-      </section>
-      <main>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quidem
-        quae. Repudiandae voluptatum quos atque, labore sapiente a velit beatae
-        at autem! Debitis fuga minima dolorem, omnis laborum autem nam!
-      </main>
+      <Container>
+        <SectionIntro>
+          <h1>🤖 Welcome to AI Object Detection</h1>
+          <span>
+            Discover the power of artificial intelligence by analyzing images to
+            detect objects in real-time. <strong>Upload an image</strong> or
+            <strong> use your webcam</strong> to get started.
+          </span>
+        </SectionIntro>
+        <MainContent>
+          <hgroup>
+            <h2>📷 Select an image</h2>
+            <h3>Choose from a gallery or use your webcam</h3>
+            <p>Click on an image below or activate your webcam for analysis.</p>
+          </hgroup>
+        </MainContent>
+      </Container>
     </>
   )
 })
