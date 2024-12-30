@@ -2,30 +2,31 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    --light-color: #E4E0E1;
-    --tertiary-color: #D6C0B3;
-    --secondary-color: #AB886D;
-    --primary-color: #493628;
-    font-size: 16px;
-    font-family: "Poppins", serif;
-    font-weight: 400;
+    --h1-color: hsl(205, 20%, 94%);
+    --text-color: hsl(205, 16%, 77%);
+    --blue: hsl(195, 85%, 41%);
+    --blue-hover: hsl(195, 80%, 50%);
+    --transition: 0.2s ease-in-out;
   }
 
   body {
     margin: 0;
     padding: 0;
-    background-color: var(--light-color);
-    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d6c0b3' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
-    color: var(--primary-color);
+    background-color: #11191f;
+    color: var(--text-color);
     height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 19px;
   }
 
   a {
-    color: inherit;
+    color: var(--blue);
     text-decoration: none;
+    transition: background-color var(--transition), color var(--transition), text-decoration var(--transition), box-shadow var(--transition), -webkit-text-decoration var(--transition);
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
+      color: var(--blue-hover);
     }
   }
 `
