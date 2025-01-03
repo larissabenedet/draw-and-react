@@ -1,25 +1,13 @@
 import '@tensorflow/tfjs'
+import React from 'react'
 import { HomePage } from './pages/HomePage'
+import { useModel } from './hooks/useModel'
 import { LoadScreen } from './pages/LoadScreen'
-import * as cocoSsd from '@tensorflow-models/coco-ssd'
-import React, { useEffect, useState } from 'react'
 
 const App: React.FC = () => {
-  const [isModelLoaded, setIsModelLoaded] = useState(false)
+  const modelData = useModel()
 
-  useEffect(() => {
-    const loadModelAndDetect = async () => {
-      const model = await cocoSsd.load()
-      console.log("🚀 ~ loadModelAndDetect ~ model:", model)
-      setIsModelLoaded(true)
-
-      // const predictions = await model.detect(imgRef.current)
-      // console.log('Predictions: ', predictions)
-    }
-
-    loadModelAndDetect()
-  }, [])
-  return <>{isModelLoaded ? <HomePage /> : <LoadScreen />}</>
+  return !!modelData ? <HomePage /> : <LoadScreen />
 }
 
 export default App
