@@ -4,6 +4,7 @@ export const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 1rem 0;
+  background-color: var(--header-color);
 
   & ul {
     margin: 0;
@@ -37,22 +38,5 @@ export const SectionIntro = styled.section`
   & h1 {
     font-size: 2.5rem;
     color: var(--h1-color);
-  }
-`
-
-export const MainContent = styled.main`
-  & h2 {
-    font-size: 1.75rem;
-    margin: 0 0 1rem 0;
-  }
-
-  & h3 {
-    color: var(--p-color);
-    font-weight: 400;
-    font-size: 1rem;
-  }
-
-  & p {
-    margin: 2.75rem 0;
   }
 `

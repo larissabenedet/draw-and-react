@@ -1,14 +1,8 @@
 import React from 'react'
-import {
-  Container,
-  HomeLink,
-  MainContent,
-  Navbar,
-  SectionIntro,
-} from './styles'
-import { Button } from './components'
+import { AllContent } from './components/Webcam/AllContent'
+import { Container, HomeLink, Navbar, SectionIntro } from './styles'
 
-const HomePage = React.forwardRef<HTMLImageElement, {}>((props, ref) => {
+const HomePage: React.FC = () => {
   return (
     <>
       <header>
@@ -16,7 +10,7 @@ const HomePage = React.forwardRef<HTMLImageElement, {}>((props, ref) => {
           <ul>
             <li>
               <HomeLink>
-                <a href="/">AI Object Detection</a>
+                <a href="/">Draw & React</a>
               </HomeLink>
             </li>
           </ul>
@@ -31,26 +25,22 @@ const HomePage = React.forwardRef<HTMLImageElement, {}>((props, ref) => {
       </header>
       <Container>
         <SectionIntro>
-          <h1>🤖 Welcome to AI Object Detection</h1>
+          <h1>✍🏻 Draw shapes, see reactions</h1>
           <span>
-            Discover the power of artificial intelligence by analyzing images to
-            detect objects in real-time. <strong>Upload an image</strong> or
-            <strong> use your webcam</strong> to get started.
+            Draw simple geometric shapes
+            <strong> directly in your webcam</strong> and watch the magic
+            happen! Experience background changes, sounds, and more as you
+            explore <strong>real-time AI</strong>.
           </span>
+          <ul>
+            <li>✔️ No data is stored or shared.</li>
+            <li>✔️ All processing happens locally in your browser.</li>
+            <li>✔️ 100% safe and private.</li>
+          </ul>
         </SectionIntro>
-        <MainContent>
-          <hgroup>
-            <h2>📷 Select an image</h2>
-            <h3>Choose from a gallery or use your webcam</h3>
-          </hgroup>
-          <p>Click on an image below or activate your webcam for analysis.</p>
-          <img src="" alt="" />
-          <Button text="Open Gallery" />
-          <Button text="Use Webcam" />
-          <Button text="Download Result" />
-        </MainContent>
+        <AllContent />
       </Container>
     </>
   )
-})
+}
 export default HomePage
