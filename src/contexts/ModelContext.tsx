@@ -4,14 +4,22 @@ import React, {
   useState,
   useEffect,
   ReactNode,
+  useRef,
 } from 'react'
 import * as tmImage from '@teachablemachine/image'
 
-interface ModelContextType {
+type ModelContextType = {
   model: tmImage.CustomMobileNet | null
   isModelLoading: boolean
   modelURL: string
   metadataURL: string
+  predictWebcamShape: any
+  detectedShape: string | null
+}
+
+type Prediction = {
+  probability: number
+  className: string
 }
 
 const ModelContext = createContext<ModelContextType | undefined>(undefined)
@@ -26,6 +34,23 @@ export const ModelProvider: React.FC<{
 }> = ({ children }) => {
   const [model, setModel] = useState<tmImage.CustomMobileNet | null>(null)
   const [isModelLoading, setIsModelLoading] = useState(true)
+  const maxPredictions = model?.getTotalClasses() ?? 0
+  const [stableFrames, setStableFrames] = useState(0)
+  const [lastPredictedClass, setLastPredictedClass] = useState<string | null>(
+    null
+  )
+  const stableFramesRef = useRef(stableFrames)
+  const lastPredictedClassRef = useRef(lastPredictedClass)
+
+  const [detectedShape, setDetectedShape] = useState<string | null>(null)
+
+  useEffect(() => {
+    stableFramesRef.current = stableFrames
+  }, [stableFrames])
+
+  useEffect(() => {
+    lastPredictedClassRef.current = lastPredictedClass
+  }, [lastPredictedClass])
 
   useEffect(() => {
     const loadModel = async () => {
@@ -42,9 +67,61 @@ export const ModelProvider: React.FC<{
     loadModel()
   }, [modelURL, metadataURL])
 
+  const matchClassRequirements = (predictionElement: Prediction) => {
+    if (!!predictionElement.className) {
+      return (
+        predictionElement.probability >= 0.83 &&
+        predictionElement.className !== 'Person'
+      )
+    }
+  }
+
+  const predictWebcamShape = async (webcam: tmImage.Webcam) => {
+    const prediction = (await model?.predict(webcam.canvas)) ?? []
+
+    let currentPredominantClass: string | null = null
+    let currentMaxProbability = 0
+
+    for (let i = 0; i < maxPredictions; i++) {
+      const predictionElement = prediction[i]
+      if (matchClassRequirements(predictionElement)) {
+        if (predictionElement.probability > currentMaxProbability) {
+          currentMaxProbability = predictionElement.probability
+          currentPredominantClass = predictionElement.className
+        }
+      }
+    }
+
+    if (
+      currentPredominantClass &&
+      currentPredominantClass === lastPredictedClassRef.current
+    ) {
+      setStableFrames((prev) => prev + 1)
+    } else {
+      setStableFrames(0)
+    }
+
+    setLastPredictedClass(currentPredominantClass)
+
+    if (stableFramesRef.current >= 25) {
+      setDetectedShape(lastPredictedClassRef.current)
+      await webcam.pause()
+      alert(`Forma predominante detectada: ${currentPredominantClass}`)
+      setStableFrames(0)
+      setLastPredictedClass(null)
+    }
+  }
+
   return (
     <ModelContext.Provider
-      value={{ model, isModelLoading, modelURL, metadataURL }}
+      value={{
+        model,
+        isModelLoading,
+        modelURL,
+        metadataURL,
+        predictWebcamShape,
+        detectedShape,
+      }}
     >
       {children}
     </ModelContext.Provider>
