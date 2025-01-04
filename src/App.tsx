@@ -1,13 +1,13 @@
 import '@tensorflow/tfjs'
 import React from 'react'
-import { HomePage } from './pages/HomePage'
-import { useModel } from './hooks/useModel'
+import { useModelContext } from './contexts/ModelContext'
 import { LoadScreen } from './pages/LoadScreen'
+import { HomePage } from './pages/HomePage'
 
 const App: React.FC = () => {
-  const modelData = useModel()
+  const { isModelLoading } = useModelContext()
 
-  return !!modelData ? <HomePage /> : <LoadScreen />
+  return isModelLoading ? <LoadScreen /> : <HomePage />
 }
 
 export default App
