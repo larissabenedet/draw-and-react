@@ -15,6 +15,7 @@ type ModelContextType = {
   metadataURL: string
   predictWebcamShape: any
   detectedShape: string | null
+  resetShape: any
 }
 
 type Prediction = {
@@ -112,6 +113,8 @@ export const ModelProvider: React.FC<{
     }
   }
 
+  const resetShape = () => setDetectedShape(null)
+
   return (
     <ModelContext.Provider
       value={{
@@ -121,6 +124,7 @@ export const ModelProvider: React.FC<{
         metadataURL,
         predictWebcamShape,
         detectedShape,
+        resetShape,
       }}
     >
       {children}

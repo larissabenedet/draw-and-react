@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
 import * as tmImage from '@teachablemachine/image'
 import { Enabler } from '../WebcamManager/Enabler'
+import React, { useEffect, useRef, useState } from 'react'
 import { useModelContext } from '../../../../../contexts/ModelContext'
 
 const Analysis: React.FC = () => {
-  const { predictWebcamShape, detectedShape } = useModelContext()
+  const { predictWebcamShape, detectedShape, resetShape } = useModelContext()
   const webcamCanvas = useRef<HTMLDivElement>(null)
-  const webcamRef = useRef<tmImage.Webcam | null>(null) // Ref para a webcam
+  const webcamRef = useRef<tmImage.Webcam | null>(null)
 
   const [isWebcamActive, setIsWebcamActive] = useState<boolean>(false)
 
@@ -15,10 +15,7 @@ const Analysis: React.FC = () => {
 
   useEffect(() => {
     detectedShapeRef.current = detectedShape
-    if (detectedShape && requestIdRef.current !== null) {
-      window.cancelAnimationFrame(requestIdRef.current)
-      requestIdRef.current = null
-    }
+    stopShapeAnalysisLoop()
   }, [detectedShape])
 
   const enableWebcam = async () => {
@@ -50,14 +47,34 @@ const Analysis: React.FC = () => {
     }
   }
 
-  const handleRestart = () => {}
+  const stopShapeAnalysisLoop = () => {
+    if (detectedShape && requestIdRef.current !== null) {
+      window.cancelAnimationFrame(requestIdRef.current)
+      requestIdRef.current = null
+    }
+  }
+
+  const restartShapeAnalysisLoop = async () => {
+    resetShape()
+    if (webcamRef.current) {
+      await webcamRef.current.play()
+      if (webcamCanvas.current) {
+        webcamCanvas.current.appendChild(webcamRef.current.canvas)
+        startShapeAnalysisLoop()
+      }
+    }
+  }
 
   return (
     <>
       {isWebcamActive ? (
         <div>
           <h2>{detectedShape ? detectedShape : '🔍 Analyzing...'}</h2>
-          <div ref={webcamCanvas}></div>
+          <div ref={webcamCanvas}>
+            <button onClick={async () => await restartShapeAnalysisLoop()}>
+              Restart Webcam
+            </button>
+          </div>
         </div>
       ) : (
         <Enabler enableWebcam={enableWebcam} />
