@@ -1,5 +1,5 @@
 import React from 'react'
-import { AllContent } from './components/Webcam/AllContent'
+import { WebcamManager } from './components/Webcam/WebcamManager'
 import { Container, HomeLink, Navbar, SectionIntro } from './styles'
 
 const HomePage: React.FC = () => {
@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
             <li>✔️ 100% safe and private.</li>
           </ul>
         </SectionIntro>
-        <AllContent />
+        <WebcamManager />
       </Container>
     </>
   )
