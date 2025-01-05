@@ -1,14 +1,13 @@
+import * as tmImage from '@teachablemachine/image'
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
-import * as tmImage from '@teachablemachine/image'
-
 type WebcamContextType = {
-  webcam: any
+  webcam: tmImage.Webcam
   isWebcamActive: boolean
-  activateWebcam: any
-  pauseWebcam: any
-  updateWebcamFrames: any
-  playWebcam: any
+  activateWebcam: VoidFunction
+  pauseWebcam: VoidFunction
+  updateWebcamFrames: VoidFunction
+  playWebcam: VoidFunction
 }
 
 const WebcamContext = createContext<WebcamContextType | undefined>(undefined)
@@ -25,7 +24,7 @@ export const WebcamProvider: React.FC<{
       playWebcam()
       setIsWebcamActive(true)
     } catch (error) {
-      console.error('Error accessing webcam:', error)
+      alert(error)
     }
   }
 
