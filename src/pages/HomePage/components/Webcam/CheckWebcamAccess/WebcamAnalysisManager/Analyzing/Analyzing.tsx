@@ -12,14 +12,16 @@ const Analyzing: React.FC = () => {
   const { predictWebcamShape, detectedShape, resetShape } = useModelContext()
 
   const containerRef = useRef<HTMLDivElement>(null)
-  const detectedShapeRef = useRef(detectedShape)
+  const detectedShapeRef = useRef<string | null>(detectedShape)
 
   const [animationFrameId, setAnimationFrameId] = useState<number | null>(null)
+  const [isCanvasLoading, setIsCanvasLoading] = useState<boolean | null>(true)
 
   useEffect(() => {
     if (containerRef.current && webcam)
       containerRef.current.appendChild(webcam.canvas)
     startShapeAnalysisLoop()
+    setIsCanvasLoading(false)
   }, [])
 
   useEffect(() => {
@@ -30,7 +32,6 @@ const Analyzing: React.FC = () => {
     if (!detectedShapeRef.current) {
       updateWebcamFrames()
       await predictWebcamShape(webcam)
-      console.log('está em loop')
       setAnimationFrameId(window.requestAnimationFrame(startShapeAnalysisLoop))
     }
   }
@@ -56,9 +57,15 @@ const Analyzing: React.FC = () => {
 
   return (
     <>
-      <Title detectedShape={detectedShape} />
+      {isCanvasLoading ? (
+        <h2>loading...</h2>
+      ) : (
+        <Title detectedShape={detectedShape} />
+      )}
+
       <TipsList />
       <AnalysisContainer>
+        {isCanvasLoading && <h2>loading...</h2>}
         <div ref={containerRef} />
         {detectedShape && (
           <ButtonStyled
