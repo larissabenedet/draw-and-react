@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
               <Painting />
             </div>
             <div>
-              <h1>Draw shapes, see reactions</h1>
+              <h1>draw shapes, see reactions</h1>
             </div>
           </TitleWithIcon>
 

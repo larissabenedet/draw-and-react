@@ -26,6 +26,16 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  h1, h2 {
+    font-family: "Gamja Flower", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
   a {
     color: var(--text-color);
     text-decoration: none;
