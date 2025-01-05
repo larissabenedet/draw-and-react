@@ -1,30 +1,5 @@
 import styled from 'styled-components'
 
-export const Navbar = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 0;
-  background-color: var(--header-color);
-
-  & ul {
-    margin: 0;
-    padding: 0 1rem;
-    list-style: none;
-  }
-`
-
-export const HomeLink = styled.strong`
-  font-size: 1.188rem;
-
-  & a {
-    color: var(--text-color);
-  }
-
-  & a:hover {
-    color: var(--text-color);
-  }
-`
-
 export const Container = styled.div`
   max-width: 62.5rem;
   margin: 0 auto;
@@ -32,11 +7,42 @@ export const Container = styled.div`
 `
 
 export const SectionIntro = styled.section`
-  margin-bottom: 8rem;
+  margin-bottom: 2rem;
   text-align: center;
+  border-bottom: solid 1px var(--header-color);
 
   & h1 {
     font-size: 2.5rem;
     color: var(--h1-color);
+  }
+`
+
+export const List = styled.ul`
+  text-align: left;
+  margin: 2.5rem 0;
+  letter-spacing: 0.5px;
+  padding: 0;
+
+  & li {
+    list-style: none;
+    margin-bottom: 0.645rem;
+    display: flex;
+    align-items: center;
+
+    & svg {
+      fill: #34b233;
+      margin-right: 0.625rem;
+    }
+  }
+`
+
+export const TitleWithIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & svg {
+    margin-right: 0.938rem;
+    fill: var(--title-color);
   }
 `
