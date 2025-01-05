@@ -2,8 +2,8 @@ import React from 'react'
 import Check from '../../assets/svgs/Check'
 import { Navbar } from './components/Navbar'
 import Painting from '../../assets/svgs/Painting'
-import { WebcamManager } from './components/Webcam/WebcamManager'
 import { Container, List, SectionIntro, TitleWithIcon } from './styles'
+import { CheckWebcamAccess } from './components/Webcam/CheckWebcamAccess'
 
 const HomePage: React.FC = () => {
   return (
@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
             </li>
           </List>
         </SectionIntro>
-        <WebcamManager />
+        <CheckWebcamAccess />
       </Container>
     </>
   )

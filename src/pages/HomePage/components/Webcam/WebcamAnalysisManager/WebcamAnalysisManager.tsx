@@ -1,7 +1,7 @@
 import * as tmImage from '@teachablemachine/image'
-import { Enabler } from '../WebcamManager/Enabler'
+import { Enabler } from '../CheckWebcamAccess/Enabler'
 import React, { useEffect, useRef, useState } from 'react'
-import { ButtonStyled } from '../WebcamManager/Enabler/styles'
+import { ButtonStyled } from '../CheckWebcamAccess/Enabler/styles'
 import { useModelContext } from '../../../../../contexts/ModelContext'
 import MagnifyingGlass from '../../../../../assets/svgs/MagnifyingGlass'
 import { TitleWithIcon, AnalysisContainer, List, ListContainer } from './styles'
@@ -9,7 +9,7 @@ import { TitleWithIcon, AnalysisContainer, List, ListContainer } from './styles'
 // SEPARAR COMPONENTES NO RETURN
 // TEM UM DELAY ATE A WEBCAM SER ACEITA NO BROWSER, ENTENDER COMO EXIBIR UM LOADING DURANTE ESSE DELAY.
 
-const Analysis: React.FC = () => {
+const WebcamAnalysisManager: React.FC = () => {
   const { predictWebcamShape, detectedShape, resetShape } = useModelContext()
   const webcamContainer = useRef<HTMLDivElement>(null)
   const webcamElement = useRef<tmImage.Webcam | null>(null)
@@ -144,4 +144,4 @@ const Analysis: React.FC = () => {
   )
 }
 
-export default Analysis
+export default WebcamAnalysisManager
