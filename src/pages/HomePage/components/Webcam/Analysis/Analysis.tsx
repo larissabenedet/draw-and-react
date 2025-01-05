@@ -1,8 +1,13 @@
 import * as tmImage from '@teachablemachine/image'
 import { Enabler } from '../WebcamManager/Enabler'
 import React, { useEffect, useRef, useState } from 'react'
+import { ButtonStyled } from '../WebcamManager/Enabler/styles'
 import { useModelContext } from '../../../../../contexts/ModelContext'
-import { ButtonStyled } from './styles'
+import MagnifyingGlass from '../../../../../assets/svgs/MagnifyingGlass'
+import { TitleWithIcon, AnalysisContainer, List, ListContainer } from './styles'
+
+// SEPARAR COMPONENTES NO RETURN
+// TEM UM DELAY ATE A WEBCAM SER ACEITA NO BROWSER, ENTENDER COMO EXIBIR UM LOADING DURANTE ESSE DELAY.
 
 const Analysis: React.FC = () => {
   const { predictWebcamShape, detectedShape, resetShape } = useModelContext()
@@ -55,7 +60,7 @@ const Analysis: React.FC = () => {
 
   const enableWebcam = async () => {
     try {
-      const webcamInstance = new tmImage.Webcam(800, 800, true)
+      const webcamInstance = new tmImage.Webcam(600, 600, true)
       webcamElement.current = webcamInstance
       await webcamElement.current.setup()
       setIsWebcamActive(true)
@@ -76,13 +81,61 @@ const Analysis: React.FC = () => {
     <>
       {isWebcamActive ? (
         <div>
-          <h2>{detectedShape ? detectedShape : '🔍 Analyzing...'}</h2>
-          <div ref={webcamContainer} />
-          <ButtonStyled
-            onClick={async () => await restartWebcamAndShapeAnalysisLoop()}
-          >
-            Restart Webcam
-          </ButtonStyled>
+          <>
+            {!detectedShape ? (
+              <div>
+                <TitleWithIcon>
+                  <div>
+                    <MagnifyingGlass />
+                  </div>
+                  <div>
+                    <h2>searching for shapes...!</h2>
+                  </div>
+                </TitleWithIcon>
+              </div>
+            ) : (
+              <div>
+                <TitleWithIcon>
+                  <div>
+                    <MagnifyingGlass />
+                  </div>
+                  <div>
+                    <h2>{detectedShape}</h2>
+                  </div>
+                </TitleWithIcon>
+              </div>
+            )}
+            <ListContainer>
+              <h3>Tips</h3>
+              <List>
+                <li>
+                  Shapes you <strong>can</strong> draw: 💛 Heart, ⚠️ Triangle,
+                  🟡 Circle and ⭐️ Star.
+                </li>
+                <li>
+                  <strong>
+                    Hold your drawing steady in front of the camera
+                  </strong>{' '}
+                  for a few seconds to ensure it's detected.
+                </li>
+                <li>
+                  Make sure your shape is clear and your face is out of the
+                  frame to avoid distractions.
+                </li>
+              </List>
+            </ListContainer>
+          </>
+
+          <AnalysisContainer>
+            <div ref={webcamContainer}></div>
+            {detectedShape && (
+              <ButtonStyled
+                onClick={async () => await restartWebcamAndShapeAnalysisLoop()}
+              >
+                Restart Shape Search
+              </ButtonStyled>
+            )}
+          </AnalysisContainer>
         </div>
       ) : (
         <Enabler enableWebcam={enableWebcam} />
