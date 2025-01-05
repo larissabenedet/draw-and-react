@@ -1,6 +1,6 @@
 import React from 'react'
-import { AccessDenied } from '../AccessDenied'
-import { WebcamAnalysisManager } from '../WebcamAnalysisManager'
+import { AccessDenied } from './AccessDenied'
+import { WebcamAnalysisManager } from './WebcamAnalysisManager'
 
 const CheckWebcamAccess: React.FC = () => {
   const browserHaveAccessToWebcam: boolean = !!(

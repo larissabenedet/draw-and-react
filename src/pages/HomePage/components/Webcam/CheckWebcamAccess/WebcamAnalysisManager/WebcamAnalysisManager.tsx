@@ -1,9 +1,9 @@
+import { Enabler } from './Enabler'
+import { ButtonStyled } from './Enabler/styles'
 import * as tmImage from '@teachablemachine/image'
-import { Enabler } from '../CheckWebcamAccess/Enabler'
 import React, { useEffect, useRef, useState } from 'react'
-import { ButtonStyled } from '../CheckWebcamAccess/Enabler/styles'
-import { useModelContext } from '../../../../../contexts/ModelContext'
-import MagnifyingGlass from '../../../../../assets/svgs/MagnifyingGlass'
+import { useModelContext } from '../../../../../../contexts/ModelContext'
+import MagnifyingGlass from '../../../../../../assets/svgs/MagnifyingGlass'
 import { TitleWithIcon, AnalysisContainer, List, ListContainer } from './styles'
 
 // SEPARAR COMPONENTES NO RETURN

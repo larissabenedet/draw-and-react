@@ -1,6 +1,6 @@
 import React from 'react'
 import { ButtonStyled, TitleWithIcon } from './styles'
-import Webcam from '../../../../../../assets/svgs/Webcam'
+import Webcam from '../../../../../../../assets/svgs/Webcam'
 
 type EnablerProps = {
   enableWebcam: React.MouseEventHandler<HTMLButtonElement>
