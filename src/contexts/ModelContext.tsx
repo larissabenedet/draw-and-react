@@ -13,9 +13,9 @@ type ModelContextType = {
   isModelLoading: boolean
   modelURL: string
   metadataURL: string
-  predictWebcamShape: any
+  predictWebcamShape: (webcam: tmImage.Webcam) => Promise<void>
   detectedShape: string | null
-  resetShape: any
+  resetShape: VoidFunction
 }
 
 type Prediction = {
@@ -34,14 +34,14 @@ export const ModelProvider: React.FC<{
   children: ReactNode
 }> = ({ children }) => {
   const [model, setModel] = useState<tmImage.CustomMobileNet | null>(null)
-  const [isModelLoading, setIsModelLoading] = useState(true)
+  const [isModelLoading, setIsModelLoading] = useState<boolean>(true)
   const maxPredictions = model?.getTotalClasses() ?? 0
-  const [stableFrames, setStableFrames] = useState(0)
+  const [stableFrames, setStableFrames] = useState<number>(0)
   const [lastPredictedClass, setLastPredictedClass] = useState<string | null>(
     null
   )
-  const stableFramesRef = useRef(stableFrames)
-  const lastPredictedClassRef = useRef(lastPredictedClass)
+  const stableFramesRef = useRef<number>(stableFrames)
+  const lastPredictedClassRef = useRef<string | null>(lastPredictedClass)
 
   const [detectedShape, setDetectedShape] = useState<string | null>(null)
 
