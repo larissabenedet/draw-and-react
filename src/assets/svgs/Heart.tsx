@@ -6,8 +6,8 @@ const Heart = () => {
       id="Capa_1"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width="40px"
-      height="40px"
+      width="20px"
+      height="20px"
       viewBox="0 0 495.233 495.233"
       xmlSpace="preserve"
     >

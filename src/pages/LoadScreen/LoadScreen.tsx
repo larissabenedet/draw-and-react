@@ -1,13 +1,15 @@
 import React from 'react'
+import Wait from '../../assets/svgs/Wait'
 import { Container, LoadTitle } from './styles'
-import { Loader } from '../../assets/images/Loader'
 
 const LoadScreen: React.FC = () => {
   return (
     <Container>
       <div>
-        <LoadTitle>wait until COCO-SSD model finishes loading...</LoadTitle>
-        <Loader />
+        <LoadTitle>
+          wait until the shape detection model is fully loaded...
+        </LoadTitle>
+        <Wait />
       </div>
     </Container>
   )

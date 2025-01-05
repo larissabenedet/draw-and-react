@@ -24,3 +24,19 @@ export const HomeLink = styled.strong`
     color: var(--text-color);
   }
 `
+
+export const Credits = styled.li`
+  display: flex;
+  align-items: center;
+`
+
+export const HeartContainer = styled.span`
+  display: inline-block;
+  margin: 0 7px;
+  position: relative;
+  top: 5px;
+
+  & svg {
+    fill: #ff78ae;
+  }
+`

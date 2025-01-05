@@ -1,5 +1,6 @@
 import React from 'react'
-import { HomeLink, NavbarStyled } from './styles'
+import { Credits, HeartContainer, HomeLink, NavbarStyled } from './styles'
+import Heart from '../../../../assets/svgs/Heart'
 
 const Navbar: React.FC = () => {
   return (
@@ -13,11 +14,15 @@ const Navbar: React.FC = () => {
           </li>
         </ul>
         <ul>
-          <li>
+          <Credits>
             <a href="https://github.com/larissabenedet" target="_blank">
-              Made with ❤️ by lari
+              <span>Made with</span>
+              <HeartContainer>
+                <Heart />
+              </HeartContainer>
+              <span>by lari</span>
             </a>
-          </li>
+          </Credits>
         </ul>
       </NavbarStyled>
     </header>

@@ -2,10 +2,10 @@ import styled, { keyframes } from 'styled-components'
 
 const pulse = keyframes`
   50% {
-    fill: #D6C0B3;
+    fill: var(--header-color);
   }
   to {
-    fill: #493628;
+    fill: var(--text-color);
   }
 `
 
@@ -21,7 +21,7 @@ const iosIntro = keyframes`
 `
 
 export const Container = styled.div`
-  position: fixed; /* Usando fixed para garantir que cubra toda a tela */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -36,7 +36,7 @@ export const Container = styled.div`
   transition: all;
 
   & svg {
-    fill: #ab886d;
+    fill: var(--title-color);
     display: block;
     margin: 0 auto;
 
@@ -51,7 +51,7 @@ export const Container = styled.div`
 `
 
 export const LoadTitle = styled.h1`
-  color: #493628;
+  color: var(--title-color);
   font-weight: 500;
   letter-spacing: 1px;
 `
