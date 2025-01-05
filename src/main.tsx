@@ -3,12 +3,15 @@ import { StrictMode } from 'react'
 import GlobalStyle from './GlobalStyles'
 import { createRoot } from 'react-dom/client'
 import { ModelProvider } from './contexts/ModelContext'
+import { WebcamProvider } from './contexts/WebcamContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ModelProvider>
-      <GlobalStyle />
-      <App />
+      <WebcamProvider>
+        <GlobalStyle />
+        <App />
+      </WebcamProvider>
     </ModelProvider>
   </StrictMode>
 )

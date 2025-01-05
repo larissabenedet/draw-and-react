@@ -106,7 +106,6 @@ export const ModelProvider: React.FC<{
 
     if (stableFramesRef.current >= 25) {
       setDetectedShape(lastPredictedClassRef.current)
-      await webcam.pause()
       alert(`Forma predominante detectada: ${currentPredominantClass}`)
       setStableFrames(0)
       setLastPredictedClass(null)
