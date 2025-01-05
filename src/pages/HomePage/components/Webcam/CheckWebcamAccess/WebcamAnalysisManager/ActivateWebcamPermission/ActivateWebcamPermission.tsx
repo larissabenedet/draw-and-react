@@ -1,12 +1,10 @@
 import React from 'react'
 import { ButtonStyled, TitleWithIcon } from './styles'
 import Webcam from '../../../../../../../assets/svgs/Webcam'
+import { useWebcamContext } from '../../../../../../../contexts/WebcamContext'
 
-type EnablerProps = {
-  enableWebcam: React.MouseEventHandler<HTMLButtonElement>
-}
-
-const Enabler: React.FC<EnablerProps> = ({ enableWebcam }) => {
+const ActivateWebcamPermission: React.FC = () => {
+  const { activateWebcam } = useWebcamContext()
   return (
     <div>
       <TitleWithIcon>
@@ -21,9 +19,9 @@ const Enabler: React.FC<EnablerProps> = ({ enableWebcam }) => {
         To start, activate your webcam by clicking the button below and granting
         permission in your browser.
       </p>
-      <ButtonStyled onClick={enableWebcam}>Activate Webcam</ButtonStyled>
+      <ButtonStyled onClick={activateWebcam}>Activate Webcam</ButtonStyled>
     </div>
   )
 }
 
-export default Enabler
+export default ActivateWebcamPermission
