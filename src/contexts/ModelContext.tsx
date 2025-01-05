@@ -26,9 +26,9 @@ type Prediction = {
 const ModelContext = createContext<ModelContextType | undefined>(undefined)
 
 const modelURL =
-  'https://teachablemachine.withgoogle.com/models/ZRvU06r7G/model.json'
+  'https://teachablemachine.withgoogle.com/models/pppV0B6Oj/model.json'
 const metadataURL =
-  'https://teachablemachine.withgoogle.com/models/ZRvU06r7G/metadata.json'
+  'https://teachablemachine.withgoogle.com/models/pppV0B6Oj/metadata.json'
 
 export const ModelProvider: React.FC<{
   children: ReactNode
