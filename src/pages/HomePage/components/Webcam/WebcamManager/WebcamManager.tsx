@@ -8,7 +8,7 @@ const WebcamManager: React.FC = () => {
   )
 
   return (
-    <main>{!browserHaveAccessToWebcam ? <Analysis /> : <AccessDenied />}</main>
+    <main>{browserHaveAccessToWebcam ? <Analysis /> : <AccessDenied />}</main>
   )
 }
 
