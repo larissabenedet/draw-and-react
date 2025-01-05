@@ -5,63 +5,69 @@ import { useModelContext } from '../../../../../contexts/ModelContext'
 
 const Analysis: React.FC = () => {
   const { predictWebcamShape, detectedShape, resetShape } = useModelContext()
-  const webcamCanvas = useRef<HTMLDivElement>(null)
-  const webcamRef = useRef<tmImage.Webcam | null>(null)
+  const webcamContainer = useRef<HTMLDivElement>(null)
+  const webcamElement = useRef<tmImage.Webcam | null>(null)
+  const animationFrameIdRef = useRef<number | null>(null)
+  const detectedShapeRef = useRef(detectedShape)
 
   const [isWebcamActive, setIsWebcamActive] = useState<boolean>(false)
 
-  const requestIdRef = useRef<number | null>(null)
-  const detectedShapeRef = useRef(detectedShape)
-
   useEffect(() => {
-    detectedShapeRef.current = detectedShape
     stopShapeAnalysisLoop()
   }, [detectedShape])
-
-  const enableWebcam = async () => {
-    try {
-      const webcam = new tmImage.Webcam(800, 800, true)
-      webcamRef.current = webcam
-      await webcam.setup()
-      setIsWebcamActive(true)
-      await webcam.play()
-
-      if (webcamCanvas.current) {
-        webcamCanvas.current.appendChild(webcam.canvas)
-      }
-
-      startShapeAnalysisLoop()
-    } catch (error) {
-      console.error('Error accessing webcam:', error)
-    }
-  }
 
   const startShapeAnalysisLoop = async () => {
     if (!detectedShapeRef.current) {
       console.log('está em loop')
-      webcamRef.current?.update()
-      await predictWebcamShape(webcamRef.current!)
-      requestIdRef.current = window.requestAnimationFrame(
+      webcamElement.current?.update()
+      await predictWebcamShape(webcamElement.current!)
+      animationFrameIdRef.current = window.requestAnimationFrame(
         startShapeAnalysisLoop
       )
     }
   }
 
   const stopShapeAnalysisLoop = () => {
-    if (detectedShape && requestIdRef.current !== null) {
-      window.cancelAnimationFrame(requestIdRef.current)
-      requestIdRef.current = null
+    detectedShapeRef.current = detectedShape
+    if (detectedShape && animationFrameIdRef.current !== null) {
+      window.cancelAnimationFrame(animationFrameIdRef.current)
+      animationFrameIdRef.current = null
     }
   }
 
-  const restartShapeAnalysisLoop = async () => {
+  const startWebcam = async (webcam: tmImage.Webcam) => await webcam.play()
+  const appendWebcamInContainer = async (
+    webcam: tmImage.Webcam,
+    container: HTMLDivElement
+  ) => container.appendChild(webcam.canvas)
+
+  const restartWebcamAndShapeAnalysisLoop = async () => {
     resetShape()
-    if (webcamRef.current) {
-      await webcamRef.current.play()
-      if (webcamCanvas.current) {
-        webcamCanvas.current.appendChild(webcamRef.current.canvas)
-        startShapeAnalysisLoop()
-      }
+    if (webcamElement.current) await startWebcam(webcamElement.current)
+    if (webcamElement.current && webcamContainer.current)
+      await appendWebcamInContainer(
+        webcamElement.current,
+        webcamContainer.current
+      )
+    startShapeAnalysisLoop()
+  }
+
+  const enableWebcam = async () => {
+    try {
+      const webcamInstance = new tmImage.Webcam(800, 800, true)
+      webcamElement.current = webcamInstance
+      await webcamElement.current.setup()
+      setIsWebcamActive(true)
+
+      if (webcamElement.current) await startWebcam(webcamElement.current)
+      if (webcamContainer.current)
+        await appendWebcamInContainer(
+          webcamElement.current,
+          webcamContainer.current
+        )
+      startShapeAnalysisLoop()
+    } catch (error) {
+      console.error('Error accessing webcam:', error)
     }
   }
 
@@ -70,11 +76,12 @@ const Analysis: React.FC = () => {
       {isWebcamActive ? (
         <div>
           <h2>{detectedShape ? detectedShape : '🔍 Analyzing...'}</h2>
-          <div ref={webcamCanvas}>
-            <button onClick={async () => await restartShapeAnalysisLoop()}>
-              Restart Webcam
-            </button>
-          </div>
+          <div ref={webcamContainer} />
+          <button
+            onClick={async () => await restartWebcamAndShapeAnalysisLoop()}
+          >
+            Restart Webcam
+          </button>
         </div>
       ) : (
         <Enabler enableWebcam={enableWebcam} />
