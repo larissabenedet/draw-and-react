@@ -4,7 +4,8 @@ const AccessDenied: React.FC = () => {
   return (
     <div>
       <h2>
-        😿 Your browser doesn't have access to webcam, try in another one.
+        😿 It seems your browser doesn't have access to the webcam. Please try
+        using a different one.
       </h2>
     </div>
   )

@@ -1,17 +1,14 @@
-import { Analysis } from '../Analysys'
-import { AccessDenied } from '../AccessDenied'
 import React from 'react'
+import { Analysis } from '../Analysis'
+import { AccessDenied } from '../AccessDenied'
 
 const WebcamManager: React.FC = () => {
-  const browserHaveAccessToWebcam = !!(
+  const browserHaveAccessToWebcam: boolean = !!(
     navigator.mediaDevices && navigator.mediaDevices.getUserMedia
   )
 
   return (
-    <main>
-      {!browserHaveAccessToWebcam && <AccessDenied />}
-      <Analysis />
-    </main>
+    <main>{!browserHaveAccessToWebcam ? <Analysis /> : <AccessDenied />}</main>
   )
 }
 

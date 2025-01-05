@@ -2,6 +2,7 @@ import * as tmImage from '@teachablemachine/image'
 import { Enabler } from '../WebcamManager/Enabler'
 import React, { useEffect, useRef, useState } from 'react'
 import { useModelContext } from '../../../../../contexts/ModelContext'
+import { ButtonStyled } from './styles'
 
 const Analysis: React.FC = () => {
   const { predictWebcamShape, detectedShape, resetShape } = useModelContext()
@@ -77,11 +78,11 @@ const Analysis: React.FC = () => {
         <div>
           <h2>{detectedShape ? detectedShape : '🔍 Analyzing...'}</h2>
           <div ref={webcamContainer} />
-          <button
+          <ButtonStyled
             onClick={async () => await restartWebcamAndShapeAnalysisLoop()}
           >
             Restart Webcam
-          </button>
+          </ButtonStyled>
         </div>
       ) : (
         <Enabler enableWebcam={enableWebcam} />
