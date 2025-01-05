@@ -15,20 +15,23 @@ const About = () => {
       </TitleWithIcon>
 
       <span>
-        Draw simple geometric shapes
-        <strong> directly in your webcam</strong> and watch the magic happen!
-        Experience background changes, sounds, and more as you explore{' '}
-        <strong>real-time AI</strong>.
+        <strong>Activate your webcam and let the fun begin!</strong> Simply draw
+        one of four shapes — <strong>heart, triangle, circle, or star</strong>—
+        and hold it up to your camera. Our trained AI will recognize your
+        drawing and react in exciting, unexpected ways.
       </span>
       <List>
         <li>
-          <Check /> No data is stored or shared.
+          <Check />
+          <strong>No data stored or shared</strong>: Your privacy is guaranteed.
         </li>
         <li>
-          <Check /> All processing happens locally in your browser.
+          <Check /> <strong>Fully local processing</strong>: Everything happens
+          right in your browser.
         </li>
         <li>
-          <Check /> 100% safe and private.
+          <Check /> <strong>100% safe and private</strong>: Secure, private, and
+          effortless fun!
         </li>
       </List>
     </SectionIntro>
