@@ -10,12 +10,14 @@ import * as tmImage from '@teachablemachine/image'
 
 type ModelContextType = {
   model: tmImage.CustomMobileNet | null
-  isModelLoading: boolean
+  isModelLoading: boolean | null
   modelURL: string
   metadataURL: string
   predictWebcamShape: (webcam: tmImage.Webcam) => Promise<void>
   detectedShape: string | null
   resetShape: VoidFunction
+  isResultModalOpen: boolean | null
+  closeResultModal: VoidFunction
 }
 
 type Prediction = {
@@ -44,6 +46,9 @@ export const ModelProvider: React.FC<{
   const lastPredictedClassRef = useRef<string | null>(lastPredictedClass)
 
   const [detectedShape, setDetectedShape] = useState<string | null>(null)
+  const [isResultModalOpen, setResultIsModalOpen] = useState<boolean | null>(
+    false
+  )
 
   useEffect(() => {
     stableFramesRef.current = stableFrames
@@ -106,13 +111,14 @@ export const ModelProvider: React.FC<{
 
     if (stableFramesRef.current >= 25) {
       setDetectedShape(lastPredictedClassRef.current)
-      alert(`Forma predominante detectada: ${currentPredominantClass}`)
+      setResultIsModalOpen(true)
       setStableFrames(0)
       setLastPredictedClass(null)
     }
   }
 
   const resetShape = () => setDetectedShape(null)
+  const closeResultModal = () => setResultIsModalOpen(false)
 
   return (
     <ModelContext.Provider
@@ -124,6 +130,8 @@ export const ModelProvider: React.FC<{
         predictWebcamShape,
         detectedShape,
         resetShape,
+        isResultModalOpen,
+        closeResultModal,
       }}
     >
       {children}

@@ -1,6 +1,7 @@
 import Title from './Title'
 import TipsList from './TipsList'
 import { AnalysisContainer } from './styles'
+import { ResultModal } from '../../ResultModal'
 import React, { useEffect, useRef, useState } from 'react'
 import { ButtonStyled } from '../ActivateWebcamPermission/styles'
 import { useModelContext } from '../../../../../../../contexts/ModelContext'
@@ -9,6 +10,7 @@ import { useWebcamContext } from '../../../../../../../contexts/WebcamContext'
 const Analyzing: React.FC = () => {
   const { webcam, pauseWebcam, updateWebcamFrames, playWebcam } =
     useWebcamContext()
+
   const { predictWebcamShape, detectedShape, resetShape } = useModelContext()
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -62,7 +64,7 @@ const Analyzing: React.FC = () => {
       ) : (
         <Title detectedShape={detectedShape} />
       )}
-
+      <ResultModal />
       <TipsList />
       <AnalysisContainer>
         {isCanvasLoading && <h2>loading...</h2>}

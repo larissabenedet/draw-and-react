@@ -1,4 +1,3 @@
-import '@tensorflow/tfjs'
 import React from 'react'
 import { HomePage } from './pages/HomePage'
 import { LoadScreen } from './pages/LoadScreen'
