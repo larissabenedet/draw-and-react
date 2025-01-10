@@ -5,6 +5,14 @@ import { useModelContext } from '../../../../../../contexts/ModelContext'
 
 const Modal = ReactModal as any
 
+const StyledModal = (props: any) => (
+  <Modal
+    {...props}
+    overlayClassName="modal-overlay"
+    className="modal-content"
+  />
+)
+
 const ResultModal = () => {
   const { detectedShape, isResultModalOpen, closeResultModal } =
     useModelContext()
@@ -16,7 +24,10 @@ const ResultModal = () => {
   }, [detectedShape])
 
   return (
-    <Modal isOpen={isResultModalOpen} onRequestClose={() => closeResultModal()}>
+    <StyledModal
+      isOpen={isResultModalOpen}
+      onRequestClose={() => closeResultModal()}
+    >
       {currentShapeCopy && (
         <div>
           <h2>{currentShapeCopy.title}</h2>
@@ -29,7 +40,7 @@ const ResultModal = () => {
           <button onClick={() => closeResultModal()}>Close Modal</button>
         </div>
       )}
-    </Modal>
+    </StyledModal>
   )
 }
 

@@ -46,6 +46,20 @@ const GlobalStyle = createGlobalStyle`
       color: var(--title-color);
     }
   }
+
+          
+  .modal-overlay {
+    position: fixed;  top: 0;  left: 0;  right: 0;  bottom: 0;  background-color: rgba(255, 255, 255, 0.75);
+  }
+  .modal-content {
+    position: relative;  width: fit-content;  max-width: 700px;  top: 50%;  left: 50%; 
+    transform: translate(-50%, -50%);  border: 1px solid #ccc; background: #fff; overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+  }
+        
 `
 
 export default GlobalStyle
