@@ -3,6 +3,11 @@ import styled from 'styled-components'
 export const ModalContent = styled.div`
   text-align: center;
   position: relative;
+
+  & iframe {
+    border: 2px dotted var(--yellow);
+    padding: 2px;
+  }
 `
 export const FactsList = styled.ul<{ $detectedShape?: string | null }>`
   text-align: left;
