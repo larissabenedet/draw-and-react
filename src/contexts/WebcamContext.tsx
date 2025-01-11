@@ -48,7 +48,7 @@ export const WebcamProvider: React.FC<{
     try {
       await webcam.play()
     } catch (error) {
-      console.error('Error pausing webcam:', error)
+      console.error('Error playing webcam:', error)
     }
   }
 

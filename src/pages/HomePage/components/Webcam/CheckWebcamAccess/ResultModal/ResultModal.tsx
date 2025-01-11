@@ -31,10 +31,6 @@ const ResultModal = () => {
 
   return (
     <>
-      {console.log(
-        '🚀 ~ ResultModal ~ currentShapeCopy.video:',
-        currentShapeCopy.video
-      )}
       {isResultModalOpen && detectedShape && (
         <RisingShapes shapeElement={detectedShape} />
       )}
@@ -53,7 +49,7 @@ const ResultModal = () => {
             <AnimatedDiv>
               <AnimatedDiv>
                 <iframe
-                  key={currentShapeCopy.video} // Força a recriação do iframe ao mudar o vídeo
+                  key={currentShapeCopy.video}
                   src={currentShapeCopy.video}
                   width="600"
                   height="350"
