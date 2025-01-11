@@ -2,6 +2,7 @@ type Shape = {
   title: string
   description: string
   facts: string[]
+  video: string
 }
 
 type ShapesCopy = {
@@ -18,6 +19,7 @@ const shapesCopy: ShapesCopy = {
       'The heart symbol we use today doesn’t look like an actual heart. It originated in the Middle Ages as a stylized representation.',
       'In 2019, a couple in the U.S. got married inside a heart-shaped room at an amusement park.',
     ],
+    video: 'https://www.youtube.com/embed/lcOxhH8N3Bo?si=fGXBZHw7mCtSazrd',
   },
   Triangle: {
     title: 'Three sides, infinite possibilities!',
@@ -28,6 +30,7 @@ const shapesCopy: ShapesCopy = {
       'The Egyptian pyramids are basically 3D triangles. The Great Pyramid of Giza was the tallest structure in the world for 3,800 years.',
       'In 2021, a mathematician solved a triangle problem that had been open for over 50 years.',
     ],
+    video: 'https://www.youtube.com/embed/qjHoedoSUXY?si=aKl6sktGLYJVlF1S',
   },
   Circle: {
     title: 'Round like the world, but without borders!',
@@ -38,6 +41,7 @@ const shapesCopy: ShapesCopy = {
       'In 2020, astronomers discovered a black hole that is the roundest object ever observed in the universe.',
       'The Yin-Yang symbol, representing balance, is a circle divided into two parts.',
     ],
+    video: 'https://www.youtube.com/embed/wXhTHyIgQ_U?si=65yTv_XYMxFrmyB2',
   },
   Star: {
     title: 'Shine bright! It’s a star... or just a drawing?',
@@ -48,6 +52,7 @@ const shapesCopy: ShapesCopy = {
       'In 2021, NASA discovered a star that "blinks" every 70 seconds, leaving scientists puzzled.',
       'The five-pointed star is an ancient symbol, used in flags, religions, and even fast-food logos.',
     ],
+    video: 'https://www.youtube.com/embed/hT_nvWreIhg?si=DegZ7P8VSVhqxmX-',
   },
 }
 
