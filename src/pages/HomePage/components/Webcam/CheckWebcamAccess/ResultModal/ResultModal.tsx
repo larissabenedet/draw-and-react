@@ -21,7 +21,12 @@ const ResultModal = () => {
   const { detectedShape, isResultModalOpen, closeResultModal } =
     useModelContext()
 
-  const [currentShapeCopy, setCurrentShapeCopy] = useState<any>({})
+  const [currentShapeCopy, setCurrentShapeCopy] = useState<{
+    title?: string;
+    description?: string;
+    video?: string;
+    facts?: string[];
+  }>({})
 
   useEffect(() => {
     if (detectedShape) {
