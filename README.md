@@ -1,50 +1,48 @@
-# React + TypeScript + Vite
+# Draw & React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Menu
 
-Currently, two official plugins are available:
+- [English](#english) 🇺🇸
+- [Português](#português) 🇧🇷
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## English
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+**Draw & React** is a fun web app that uses a model trained with Google's Teachable Machine and TensorFlow.js to detect shapes drawn by the user using their webcam. The user must draw one of the following shapes in a notebook: triangle, heart, circle, or star. Once the shape is drawn clearly, the website will guess which shape it is, providing a fun and interactive experience.
 
-- Configure the top-level `parserOptions` property like this:
+### [Visit the live demo here!](draw-and-react.vercel.app)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### How to Run the Project
+
+```bash
+# Clone the project to your local machine
+git clone https://github.com/larissabenedet/draw-and-react.git
+
+# Install dependencies
+yarn
+
+# Run the project
+yarn dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Português
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+**Draw & React** é um site interativo e divertido que utiliza um modelo treinado com o Teachable Machine da Google e a biblioteca TensorFlow.js para detectar formas desenhadas pelo usuário usando sua webcam. O usuário deve desenhar uma das seguintes formas em um caderno: triângulo, coração, círculo ou estrela. Quando a forma é desenhada claramente, o site adivinha qual foi a forma desenhada, proporcionando uma experiência divertida e interativa.
+
+### [Teste a versão ao vivo aqui!](draw-and-react.vercel.app)
+
+### How to Run the Project
+
+```bash
+# Clone o projeto para sua máquina local
+git clone https://github.com/larissabenedet/draw-and-react.git
+
+# Instale as dependências
+yarn
+
+# Execute o projeto
+yarn dev
 ```
