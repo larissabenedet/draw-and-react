@@ -1,4 +1,3 @@
-import { MainDiv } from './styles'
 import { motion } from 'framer-motion'
 import { getShapeEmoji } from '../../../../utils/shapesEmojis'
 
@@ -11,7 +10,17 @@ const RisingShapes: React.FC<RisingShapesProps> = ({ shapeElement }) => {
   const currentShapeEmoji = getShapeEmoji(shapeElement)
 
   return (
-    <MainDiv>
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: 1000,
+      }}
+    >
       {shapesCount.map((_, index) => (
         <motion.div
           key={`falling-${index}`}
@@ -31,7 +40,7 @@ const RisingShapes: React.FC<RisingShapesProps> = ({ shapeElement }) => {
           {currentShapeEmoji && currentShapeEmoji.emoji}
         </motion.div>
       ))}
-    </MainDiv>
+    </div>
   )
 }
 
