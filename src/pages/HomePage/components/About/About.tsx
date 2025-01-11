@@ -15,10 +15,10 @@ const About = () => {
       </TitleWithIcon>
 
       <span>
-        <strong>Activate your webcam and let the fun begin!</strong> Simply draw
-        one of four shapes — <strong>heart, triangle, circle, or star</strong>—
-        and hold it up to your camera. Our trained AI will recognize your
-        drawing and react in exciting, unexpected ways.
+        Get ready for a fun experience! Simply draw one of four shapes{' '}
+        <strong> —heart, triangle, circle, or star— </strong> and show it to
+        your <strong>webcam</strong>. Our AI will recognize your creation and
+        surprise you with an unexpected reaction!
       </span>
       <List>
         <li>
