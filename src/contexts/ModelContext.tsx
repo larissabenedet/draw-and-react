@@ -10,7 +10,6 @@ import * as tmImage from '@teachablemachine/image'
 
 type ModelContextType = {
   model: tmImage.CustomMobileNet | null
-  isModelLoading: boolean | null
   modelURL: string
   metadataURL: string
   predictWebcamShape: (webcam: tmImage.Webcam) => Promise<void>
@@ -36,7 +35,6 @@ export const ModelProvider: React.FC<{
   children: ReactNode
 }> = ({ children }) => {
   const [model, setModel] = useState<tmImage.CustomMobileNet | null>(null)
-  const [isModelLoading, setIsModelLoading] = useState<boolean>(true)
   const maxPredictions = model?.getTotalClasses() ?? 0
   const [stableFrames, setStableFrames] = useState<number>(0)
   const [lastPredictedClass, setLastPredictedClass] = useState<string | null>(
@@ -65,8 +63,6 @@ export const ModelProvider: React.FC<{
         setModel(loadedModel)
       } catch (error) {
         console.error('Error loading model:', error)
-      } finally {
-        setIsModelLoading(false)
       }
     }
 
@@ -123,8 +119,7 @@ export const ModelProvider: React.FC<{
   return (
     <ModelContext.Provider
       value={{
-        model,
-        isModelLoading,
+        model, 
         modelURL,
         metadataURL,
         predictWebcamShape,

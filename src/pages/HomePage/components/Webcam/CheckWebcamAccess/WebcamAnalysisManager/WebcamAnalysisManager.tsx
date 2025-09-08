@@ -6,7 +6,7 @@ import { useWebcamContext } from '../../../../../../contexts/WebcamContext'
 const WebcamAnalysisManager: React.FC = () => {
   const { isWebcamActive } = useWebcamContext()
 
-  return <>{isWebcamActive ? <Analyzing /> : <ActivateWebcamPermission />}</>
+  return isWebcamActive ? <Analyzing /> : <ActivateWebcamPermission />
 }
 
 export default WebcamAnalysisManager
