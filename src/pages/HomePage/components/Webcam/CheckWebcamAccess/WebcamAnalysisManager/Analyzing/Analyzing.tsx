@@ -3,7 +3,7 @@ import TipsList from './TipsList'
 import { AnalysisContainer } from './styles'
 import { ResultModal } from '../../ResultModal'
 import React, { useEffect, useRef, useState } from 'react'
-import { ButtonStyled } from '../ActivateWebcamPermission/styles'
+import { ButtonStyled } from '../../../../../../../components/ActionButton/styles'
 import { useModelContext } from '../../../../../../../contexts/ModelContext'
 import { useWebcamContext } from '../../../../../../../contexts/WebcamContext'
 
